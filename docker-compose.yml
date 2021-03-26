@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api
+    working_dir: /home/node/api
+    restart: always
+    command: yarn start
+    ports:
+      - "3333:3333"
+    volumes:
+      - .:/home/node/api
+      - ./node_modules:/home/node/api/node_modules
+  

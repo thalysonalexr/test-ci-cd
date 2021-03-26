@@ -2,6 +2,7 @@ const express = require('express')
 const factorial = require('./factorial')
 
 const APP_PORT = 3333
+const HOSTNAME = 'api'
 const app = express()
 
 app.use(express.json())
@@ -22,6 +23,6 @@ app.get('/factorial/:value', (req, res) => {
   })
 })
 
-app.listen(APP_PORT, () => {
+app.listen(APP_PORT, HOSTNAME, () => {
   console.log(`App running on http://localhost:${APP_PORT}`)
 })
