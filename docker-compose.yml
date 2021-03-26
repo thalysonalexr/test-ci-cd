@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: thalysonrodrigues/test-node
     container_name: api
     working_dir: /home/node/api
     restart: always
