@@ -1,0 +1,22 @@
+{
+  "name": "test-ci-cd",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thalysonalexr/test-ci-cd.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thalysonalexr/test-ci-cd/issues"
+  },
+  "homepage": "https://github.com/thalysonalexr/test-ci-cd#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.6.3"
+  }
+}
