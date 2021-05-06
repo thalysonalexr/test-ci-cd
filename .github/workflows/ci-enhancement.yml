@@ -3,7 +3,7 @@ name: CI Enhancement Notification
 on:
   push:
     branches:
-      - develop
+      - feature/*
 
 jobs:
   createPullRequest:
@@ -24,6 +24,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: ${{ steps.vars.outputs.branch-name }}
+          base: develop
           delete-branch: false
           title: '[Example] Update report'
           body: |
