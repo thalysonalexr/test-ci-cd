@@ -23,7 +23,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           base: develop
           branch: feature/test-notifications
-          title: '[Example] Update report'
+          title: '[Example] Update report #test'
           body: |
             Update report
             - Updated with *today's* date
@@ -31,10 +31,7 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-pull-request
           labels: |
-            report
             automated pr
-          assignees: thalysonalexr
-          reviewers: thalysonalexr
           team-reviewers: |
             owners
             maintainers
