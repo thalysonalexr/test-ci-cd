@@ -1,0 +1,24 @@
+name: CI Enhancement Create PR
+
+on:
+  push:
+    branches:
+      - features/*
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ""
+        destination_branch: "develop"
+        pr_title: "Pulling ${{ github.ref }} into develop"
+        pr_template: ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md"
+        pr_reviewer: "thalysonalexr"
+        pr_assignee: "thalysonalexr"
+        pr_label: "automated-pr,enhancement"
+        pr_allow_empty: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
