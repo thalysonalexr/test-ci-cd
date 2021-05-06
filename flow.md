@@ -5,7 +5,7 @@
 
 1. Todo projeto deve conter duas trunks (branchs fixas raiz): **main** (master para antigos projetos) e **develop**;
 2. Todos os checkouts para desenvolvimento de novas features deverão acontecer a partir **develop**;
-3. Todas as entregas de novas *releases* deverão acontencer a partir de uma **staging**;
+3. Todas as entregas de novas *releases* deverão acontecer a partir de uma **staging**;
 4. Bugs em produção poderão ser corrigidos através de **hotfix**;
 
 ## Branches:
