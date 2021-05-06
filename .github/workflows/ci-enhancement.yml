@@ -21,7 +21,7 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           base: develop
-          branch: feature/test-notifications
+          branch: feature/open
           title: '[Example] Update report #test'
           body: |
             Update report
