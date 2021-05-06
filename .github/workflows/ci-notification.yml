@@ -1,0 +1,32 @@
+name: CI Enhancement Notification
+
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - develop
+
+jobs:
+  notificateCodeReview:
+    runs-on: ubuntu-latest
+
+    name: Alert Notification Code Review
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Send notification to Discord Channel
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: PR aberto para revisão
+          SLACK_MESSAGE: 'https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
+          SLACK_USERNAME: Code Review
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
