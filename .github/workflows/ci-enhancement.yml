@@ -18,14 +18,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.PAT }}
           commit-message: Update report
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
           branch: ${{ steps.vars.outputs.branch-name }}
           base: develop
-          delete-branch: false
           title: '[Example] Update report'
           body: |
             Update report
@@ -41,9 +38,3 @@ jobs:
           team-reviewers: |
             owners
             maintainers
-          draft: false
-
-      - name: Check outputs
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
