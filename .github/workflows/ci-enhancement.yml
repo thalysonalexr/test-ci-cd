@@ -22,7 +22,7 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           base: develop
-          branch: feature/teste-create-pr
+          branch: feature/*
           title: '[Example] Update report'
           body: |
             Update report
