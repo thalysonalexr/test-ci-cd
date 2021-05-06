@@ -19,7 +19,7 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'Novo PR aberto para revisão. https://github.com/${{ github.repository }}/pulls :eyes: :mag_right:'
+          args: '${{ github.base_ref }} Novo PR aberto para revisão. https://github.com/${{ github.repository }}/pulls :eyes: :mag_right:'
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
