@@ -9,10 +9,8 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Make changes to pull request
-        run: date +%s > report.txt
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Create Pull Request
         id: cpr
