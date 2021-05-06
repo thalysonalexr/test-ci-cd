@@ -2,12 +2,13 @@ name: CI Enhancement Notification
 
 on:
   pull_request:
+  pull_request_review:
+    types: [opened, labeled, review_requested]
     branches:
       - develop
 
 jobs:
   notificate-code-review:
-    if: ${{ github.event.label.name == 'automated-pr,enhancement' }}
     runs-on: ubuntu-latest
 
     name: Alert Notification Code Review
