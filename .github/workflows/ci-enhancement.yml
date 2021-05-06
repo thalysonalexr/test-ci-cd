@@ -22,5 +22,5 @@ jobs:
         pr_label: "automated-pr,enhancement"
         pr_milestone: "Milestone 1"
         pr_draft: true
-        pr_allow_empty: false
+        pr_allow_empty: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
