@@ -23,8 +23,8 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: example-patches
-          delete-branch: true
+          branch: feature/notifications-slack
+          delete-branch: false
           title: '[Example] Update report'
           body: |
             Update report
