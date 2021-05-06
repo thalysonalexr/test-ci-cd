@@ -1,4 +1,4 @@
-name: CI Enhancement Notification
+name: CI Enhancement Create PR
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           base: develop
-          branch: feature/*
+          branch: feature/test-notifications
           title: '[Example] Update report'
           body: |
             Update report
