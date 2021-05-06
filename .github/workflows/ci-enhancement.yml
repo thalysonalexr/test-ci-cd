@@ -3,7 +3,7 @@ name: CI Enhancement Create PR
 on:
   push:
     branches:
-      - features/*
+      - feature/*
 
 jobs:
   create-pull-request:
