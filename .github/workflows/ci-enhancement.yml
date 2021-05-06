@@ -9,9 +9,6 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
