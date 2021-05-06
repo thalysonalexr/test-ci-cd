@@ -2,7 +2,6 @@ name: CI Enhancement Notification
 
 on:
   pull_request:
-    types: [opened, review_requested]
     branches:
       - develop
 
