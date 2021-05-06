@@ -2,11 +2,12 @@ name: CI Enhancement Notification
 
 on:
   pull_request:
+    types: [opened, review_requested]
     branches:
       - develop
 
 jobs:
-  notificateCodeReview:
+  notificate-code-review:
     runs-on: ubuntu-latest
 
     name: Alert Notification Code Review
