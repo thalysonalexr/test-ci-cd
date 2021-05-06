@@ -8,8 +8,13 @@ on:
 jobs:
   codeReview:
     name: Discord notification
-    env:
-      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-    uses: Ilshidur/action-discord@master
-    with:
-      args: 'O projeto {{ EVENT_PAYLOAD.repository.full_name }} tem um PR aberto para revisão.'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use environment variable DISCORD_WEBHOOK
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Send notification to Discord Channel
+      - uses: Ilshidur/action-discord@master
+      - with:
+          args: 'O projeto {{ EVENT_PAYLOAD.repository.full_name }} tem um PR aberto para revisão.'
