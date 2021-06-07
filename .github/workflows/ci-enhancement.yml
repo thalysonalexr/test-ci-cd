@@ -24,17 +24,18 @@ jobs:
         pr_label: "automated-pr,enhancement"
         pr_allow_empty: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Echo teste
+      run: echo "${{ steps.open-pr.outputs.pr_number }}"
 
     - uses: actions/checkout@v2
-    - run: mkdir -p ~/pull-request
+      run: mkdir -p ~/pull-request
+    
     - run: echo ${{ steps.open-pr.outputs.pr_number }} > ~/pull-request/pr.txt
     - uses: actions/upload-artifact@v2
       with:
         name: pr-info
         path: ~/pull-request/pr.txt
-
-    - name: Echo teste
-      run: echo "Hello world"
 
   notificate-code-review:
     runs-on: ubuntu-latest
