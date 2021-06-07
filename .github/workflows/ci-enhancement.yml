@@ -62,7 +62,7 @@ jobs:
     - name: Check if need notificate on this stage
 
     - name: Send notification to Discord Channel
-    - if: env.PR_NUMBER
+      if: env.PR_NUMBER
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
