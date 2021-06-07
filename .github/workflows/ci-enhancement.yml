@@ -8,6 +8,7 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
+    name: Create PR
     steps:
     - uses: actions/checkout@v2
     - name: pull-request
@@ -18,7 +19,44 @@ jobs:
         pr_title: "Pulling ${{ github.ref }} into develop"
         pr_template: ".github/PULL_REQUEST_TEMPLATE/pull_request_template.md"
         pr_reviewer: "thalysonalexr"
-        pr_assignee: "thalysonalexr"
+        pr_assignee: "${{ github.actor }}"
         pr_label: "automated-pr,enhancement"
         pr_allow_empty: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    name: Upload PR info
+    - uses: actions/checkout@v2
+    - run: mkdir -p /pull-request
+    - run: echo ${{ steps.open-pr.outputs.pr_number }} > /pull-request/pr.txt
+    - uses: actions/upload-artifact@v2
+      with:
+        name: pr-info
+        path: /pull-request/pr.txt
+
+  notificate-code-review:
+    runs-on: ubuntu-latest
+    name: Alert Notification Code Review
+    needs: create-pull-request
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Download PR info
+      uses: actions/download-artifact@v2
+      id: download
+      with:
+        name: pr-info
+
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: /pull-request
+
+    - name: Echo download path
+      run: echo ${{ steps.download.outputs.download-path }}
+
+    - name: Send notification to Discord Channel
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ steps.download.outputs.download-path }} :eyes: :mag_right:'
