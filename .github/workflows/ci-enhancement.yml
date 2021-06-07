@@ -63,6 +63,7 @@ jobs:
 
     - name: Send notification to Discord Channel
       if: env.PR_NUMBER
+      run: echo ${{ env.PR_NUMBER }}
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
