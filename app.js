@@ -24,5 +24,5 @@ app.get('/factorial/:value', (req, res) => {
 })
 
 app.listen(APP_PORT, HOSTNAME, () => {
-  console.log(`App running on http://localhost:${APP_PORT}`)
+  console.log(`Hello world!!! http://localhost:${APP_PORT}`)
 })
