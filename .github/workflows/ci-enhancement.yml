@@ -32,6 +32,9 @@ jobs:
         name: pr-info
         path: ~/pull-request/pr.txt
 
+    - name: Echo download content into variable
+      run: cat ~/pull-request/pr.txt
+
   notificate-code-review:
     runs-on: ubuntu-latest
     name: Alert Notification Code Review
