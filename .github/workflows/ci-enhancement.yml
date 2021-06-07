@@ -59,7 +59,10 @@ jobs:
         PR_NUMBER=$(cat ${{ steps.download.outputs.download-path }}/pr.txt)
         echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
 
+    - name: Check if need notificate on this stage
+
     - name: Send notification to Discord Channel
+      if: env.PR_NUMBER
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master

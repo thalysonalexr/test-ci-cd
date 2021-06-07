@@ -19,4 +19,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
+          args: 'Novos commits em: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
