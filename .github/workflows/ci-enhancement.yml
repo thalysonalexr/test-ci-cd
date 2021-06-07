@@ -45,6 +45,7 @@ jobs:
       id: download
       with:
         name: pr-info
+        path: ~/pull-request
 
     - name: Display structure of downloaded files
       working-directory: ~/pull-request
