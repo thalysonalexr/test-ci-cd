@@ -44,12 +44,8 @@ jobs:
       uses: actions/download-artifact@v2
       id: download
       with:
-        name: pr-info
+        name: 'pr-info'
         path: ~/pull-request
-
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: ~/pull-request
 
     - name: Echo download path
       run: echo ${{ steps.download.outputs.download-path }}
