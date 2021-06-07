@@ -25,12 +25,12 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: actions/checkout@v2
-    - run: mkdir -p /pull-request
-    - run: echo ${{ steps.open-pr.outputs.pr_number }} > /pull-request/pr.txt
+    - run: mkdir -p ~/pull-request
+    - run: echo ${{ steps.open-pr.outputs.pr_number }} > ~/pull-request/pr.txt
     - uses: actions/upload-artifact@v2
       with:
         name: pr-info
-        path: /pull-request/pr.txt
+        path: ~/pull-request/pr.txt
 
   notificate-code-review:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
 
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: /pull-request
+      working-directory: ~/pull-request
 
     - name: Echo download path
       run: echo ${{ steps.download.outputs.download-path }}
