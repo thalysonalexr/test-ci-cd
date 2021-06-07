@@ -29,8 +29,7 @@ jobs:
       run: echo "${{ steps.open-pr.outputs.pr_number }}"
 
     - uses: actions/checkout@v2
-      run: mkdir -p ~/pull-request
-    
+    - run: mkdir -p ~/pull-request
     - run: echo ${{ steps.open-pr.outputs.pr_number }} > ~/pull-request/pr.txt
     - uses: actions/upload-artifact@v2
       with:
