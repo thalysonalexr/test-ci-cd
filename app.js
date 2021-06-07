@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 app.get('/', (_, res) => {
   return res.json({
-    message: 'Welcome to API (nova PR)'
+    message: 'Welcome to API (nova PR) novo commit'
   })
 })
 
