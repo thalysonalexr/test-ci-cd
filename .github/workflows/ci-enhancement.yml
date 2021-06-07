@@ -48,8 +48,8 @@ jobs:
         path: ~/pull-request
 
     - name: Display structure of downloaded files
+      run: ls -R
       working-directory: ~/pull-request
-      run: ls
 
     - name: Echo download path
       run: echo ${{ steps.download.outputs.download-path }}
