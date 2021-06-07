@@ -26,6 +26,8 @@ jobs:
 
     - uses: actions/checkout@v2
       run: mkdir -p /pull-request
+
+    - name: Writing PR number
       run: echo ${{ steps.open-pr.outputs.pr_number }} > /pull-request/pr.txt
 
     - uses: actions/upload-artifact@v2
