@@ -25,9 +25,9 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload PR info
-    - uses: actions/checkout@v2
-    - run: mkdir -p /pull-request
-    - run: echo ${{ steps.open-pr.outputs.pr_number }} > /pull-request/pr.txt
+      uses: actions/checkout@v2
+      run: mkdir -p /pull-request
+      run: echo ${{ steps.open-pr.outputs.pr_number }} > /pull-request/pr.txt
 
     - uses: actions/upload-artifact@v2
       with:
