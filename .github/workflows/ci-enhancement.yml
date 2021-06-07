@@ -32,8 +32,8 @@ jobs:
         name: pr-info
         path: ~/pull-request/pr.txt
 
-    - name: Echo download content into variable
-      run: cat ~/pull-request/pr.txt
+    - name: Echo teste
+      run: echo ${{ steps.open-pr.outputs.pr_number }}
 
   notificate-code-review:
     runs-on: ubuntu-latest
