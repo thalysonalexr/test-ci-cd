@@ -25,7 +25,7 @@ jobs:
         pr_allow_empty: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Echo teste
+    - name: Echo PR Number
       run: echo "${{ steps.open-pr.outputs.pr_number }}"
 
     - uses: actions/checkout@v2
@@ -54,9 +54,14 @@ jobs:
     - name: Echo download content into variable
       run: cat ${{ steps.download.outputs.download-path }}/pr.txt
 
+    - name: Create PR Variable
+      run: |
+        PR_NUMBER=$(cat ${{ steps.download.outputs.download-path }}/pr.txt)
+        echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+
     - name: Send notification to Discord Channel
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ steps.download.outputs.download-path }} :eyes: :mag_right:'
+        args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ env.PR_NUMBER }} :eyes: :mag_right:'
