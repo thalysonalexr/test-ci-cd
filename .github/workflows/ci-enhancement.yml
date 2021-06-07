@@ -34,7 +34,7 @@ jobs:
         path: ~/pull-request/pr.txt
 
     - name: Echo teste
-      run: echo ${{ steps.open-pr.outputs.pr_number }}
+      run: echo "Hello world"
 
   notificate-code-review:
     runs-on: ubuntu-latest
