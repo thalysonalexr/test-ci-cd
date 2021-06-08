@@ -29,7 +29,7 @@ jobs:
           REF: 'refs/pull/${{ github.event.number }}/merge'
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
-        if: ${{ github.ref == $REF }}/merge' }}
+        if: ${{ github.ref == REF }}/merge' }}
         uses: Ilshidur/action-discord@master
         with:
           args: 'Novos commits em: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
