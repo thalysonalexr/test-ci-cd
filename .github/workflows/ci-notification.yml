@@ -24,11 +24,8 @@ jobs:
         with:
           args: 'Taca-lhe pau em produção: https://github.com/${{ github.repository }}/tree/main :sunglasses: :fire:'
 
-      - name: Echo
-        run: echo ${{ github.ref }}
-
       - name: Send notification new commits in PR -> develop
-        if: contains(github.ref, 'refs/heads/feature/')
+        if: ${{ github.ref == 'refs/pull/${{ github.event.number }}/merge' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
