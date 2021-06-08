@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 app.get('/', (_, res) => {
   return res.json({
-    message: 'Welcome to API'
+    message: 'Welcome to API (nova PR) novo commit'
   })
 })
 
@@ -24,5 +24,5 @@ app.get('/factorial/:value', (req, res) => {
 })
 
 app.listen(APP_PORT, HOSTNAME, () => {
-  console.log(`App running on http://localhost:${APP_PORT}`)
+  console.log(`Hello world!!! http://localhost:${APP_PORT}`)
 })

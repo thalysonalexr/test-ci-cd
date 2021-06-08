@@ -2,12 +2,13 @@ name: CI Enhancement Notification
 
 on:
   pull_request:
-    types: [opened]
-    branches:
-      - develop
+    branches: [develop]
+
+  push:
+    branches: [main]
 
 jobs:
-  notificateCodeReview:
+  notificate-code-review:
     runs-on: ubuntu-latest
 
     name: Alert Notification Code Review
@@ -15,18 +16,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Send notification to Discord Channel
+      - name: Send notification build code for production
+        if: ${{ github.ref == 'refs/heads/main' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
+          args: 'Taca-lhe pau em produção: https://github.com/${{ github.repository }}/main :sunglasses: :fire:'
 
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+      - name: Send notification open pull request in develop
+        if: ${{ github.ref == 'refs/heads/develop' }}
         env:
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_TITLE: PR aberto para revisão
-          SLACK_MESSAGE: 'https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
-          SLACK_USERNAME: Code Review
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'Novos commits em: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
