@@ -1,4 +1,4 @@
-name: CI Enhancement Create PR
+name: CI Create PR
 
 on:
   push:
@@ -12,6 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: pull-request
+      id: open-pr
       uses: repo-sync/pull-request@v2
       with:
         source_branch: ""
@@ -23,14 +24,17 @@ jobs:
         pr_label: "automated-pr,enhancement"
         pr_allow_empty: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Echo PR Number
+      run: echo "${{ steps.open-pr.outputs.pr_number }}"
 
     - uses: actions/checkout@v2
-    - run: mkdir -p /pull-request
-    - run: echo ${{ steps.open-pr.outputs.pr_number }} > /pull-request/pr.txt
+    - run: mkdir -p ~/pull-request
+    - run: echo ${{ steps.open-pr.outputs.pr_number }} > ~/pull-request/pr.txt
     - uses: actions/upload-artifact@v2
       with:
         name: pr-info
-        path: /pull-request/pr.txt
+        path: ~/pull-request/pr.txt
 
   notificate-code-review:
     runs-on: ubuntu-latest
@@ -44,18 +48,21 @@ jobs:
       uses: actions/download-artifact@v2
       id: download
       with:
-        name: pr-info
+        name: 'pr-info'
+        path: ~/pull-request
 
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: /pull-request
+    - name: Echo download content into variable
+      run: cat ${{ steps.download.outputs.download-path }}/pr.txt
 
-    - name: Echo download path
-      run: echo ${{ steps.download.outputs.download-path }}
+    - name: Create PR Variable
+      run: |
+        PR_NUMBER=$(cat ${{ steps.download.outputs.download-path }}/pr.txt)
+        echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
 
     - name: Send notification to Discord Channel
+      if: ${{ env.PR_NUMBER }}
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ steps.download.outputs.download-path }} :eyes: :mag_right:'
+        args: 'PR aberto para revisão: https://github.com/${{ github.repository }}/pull/${{ env.PR_NUMBER }} :eyes: :mag_right:'
