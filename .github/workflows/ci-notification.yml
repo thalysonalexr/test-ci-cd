@@ -24,12 +24,15 @@ jobs:
         with:
           args: 'Taca-lhe pau em produção: https://github.com/${{ github.repository }}/tree/main :sunglasses: :fire:'
 
-      - name: Send notification new commits in PR -> develop
+      - name: Echo variable REF
         env:
           REF: 'refs/pull/${{ github.event.number }}/merge'
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: echo "REF=$REF" >> $GITHUB_ENV
 
-        if: ${{ github.ref == REF }}
+      - name: Send notification new commits in PR -> develop
+        if: ${{ github.ref == env.REF }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
           args: 'Novos commits em: https://github.com/${{ github.repository }}/pull/${{ github.event.number }} :eyes: :mag_right:'
