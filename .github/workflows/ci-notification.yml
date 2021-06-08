@@ -27,7 +27,7 @@ jobs:
       - name: Echo
         env:
           REF: 'refs/pull/${{ github.event.number }}/merge'
-        run: |
+        run:
           echo ${{ REF }}
 
       - name: Send notification new commits in PR -> develop
