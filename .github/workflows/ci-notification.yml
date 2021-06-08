@@ -28,7 +28,7 @@ jobs:
         env:
           REF: 'refs/pull/${{ github.event.number }}/merge'
         run:
-          echo ${{ REF }}
+          echo $REF
 
       - name: Send notification new commits in PR -> develop
         if: ${{ github.ref == 'refs/pull/${{ github.event.number }}/merge' }}
