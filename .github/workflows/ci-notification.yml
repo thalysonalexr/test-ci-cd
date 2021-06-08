@@ -25,8 +25,9 @@ jobs:
           args: 'Taca-lhe pau em produção: https://github.com/${{ github.repository }}/tree/main :sunglasses: :fire:'
 
       - name: Echo
+        env:
+          REF: 'refs/pull/${{ github.event.number }}/merge'
         run: |
-          REF='refs/pull/${{ github.event.number }}/merge'
           echo ${{ REF }}
 
       - name: Send notification new commits in PR -> develop
