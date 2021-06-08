@@ -22,9 +22,9 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
         with:
-          args: 'Taca-lhe pau em produção: https://github.com/${{ github.repository }}/main :sunglasses: :fire:'
+          args: 'Taca-lhe pau em produção: https://github.com/${{ github.repository }}/tree/main :sunglasses: :fire:'
 
-      - name: Send notification open pull request in develop
+      - name: Send notification new commits in PR -> develop
         if: ${{ github.ref == 'refs/heads/develop' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
